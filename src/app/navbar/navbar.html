@@ -1,10 +1,30 @@
 <nav class="navbar">
   <div class="container">
-
-    <!-- زر القائمة للموبايل -->
-    <button class="menu-toggle" (click)="toggleMenu()">
-      <i class="fa-solid fa-bars"></i>
+    <!-- زر القائمة يظهر في الموبايل -->
+    <button class="menu-toggle" (click)="menuOpen = !menuOpen">
+      <i class="fas fa-bars"></i>
     </button>
+
+
+    <!-- اللوجو -->
+    <div class="logo">
+      <a href="#">
+        <img src="assets/images.jpg.png" alt="Alamir Group" />
+      </a>
+    </div>
+
+    <!-- الروابط -->
+    <ul class="nav-links" [class.active]="menuOpen">
+      <li><a [routerLink]="['/Products']">{{ currentLanguage === 'العربية' ? 'الوظائف' : 'Jobs' }}</a></li>
+      <li *ngIf="isAdmin">
+        <a [routerLink]="['/admin-dashboard']">{{ currentLanguage === 'العربية' ? 'لوحة التحكم' : 'Dashboard' }}</a>
+      </li>
+      <li><a (click)="goToCompanies()">{{ currentLanguage === 'العربية' ? 'الشركات' : 'Companies' }}</a></li>
+      <li><a [routerLink]="['/About']">{{ currentLanguage === 'العربية' ? 'من نحن' : 'About Us' }}</a></li>
+      <li>
+        <a [routerLink]="['/Home']" (click)="reloadHome()">{{ currentLanguage === 'العربية' ? 'الصفحة الرئيسية' : 'Home' }}</a>
+      </li>
+    </ul>
 
     <!-- يمين: اللغة + تواصل معنا -->
     <div class="right-side">
@@ -25,19 +45,49 @@
         {{ currentLanguage === 'العربية' ? 'تواصل معنا' : 'Contact Us' }}
       </button>
     </div>
-
-    <!-- روابط -->
-    <ul class="nav-links" [class.active]="menuOpen">
-      <li><a [routerLink]="['/Products']">{{ currentLanguage === 'العربية' ? 'الوظائف' : 'Jobs' }}</a></li>
-      <li *ngIf="isAdmin"><a [routerLink]="['/admin-dashboard']">{{ currentLanguage === 'العربية' ? 'لوحة التحكم' : 'Dashboard' }}</a></li>
-      <li><a (click)="goToCompanies()">{{ currentLanguage === 'العربية' ? 'الشركات' : 'Companies' }}</a></li>
-      <li><a [routerLink]="['/About']">{{ currentLanguage === 'العربية' ? 'من نحن' : 'About Us' }}</a></li>
-      <li><a [routerLink]="['/Home']">{{ currentLanguage === 'العربية' ? 'الصفحة الرئيسية' : 'Home' }}</a></li>
-    </ul>
-
-    <!-- اللوجو -->
-    <div class="logo">
-      <a href="#"><img src="assets/images.jpg.png" alt="Alamir Group" /></a>
-    </div>
   </div>
 </nav>
+
+<!-- ✅ نافذة تواصل معنا -->
+<div class="contact-modal" *ngIf="showContactModal" (click)="closeContactModal()">
+  <div class="contact-container" (click)="$event.stopPropagation()">
+    <button class="close-btn" (click)="closeContactModal()">
+      <i class="fas fa-times"></i>
+    </button>
+    <h2>{{ currentLanguage === 'العربية' ? 'تواصل معنا' : 'Contact Us' }}</h2>
+
+    <div class="contact-info">
+      <div class="info-item">
+        <div class="icon-wrapper"><i class="fas fa-phone"></i></div>
+        <div class="info-content">
+          <h3>{{ currentLanguage === 'العربية' ? 'الهاتف' : 'Phone' }}</h3>
+          <a href="tel:+201016117779" dir="ltr">+20 101 611 7779</a>
+        </div>
+      </div>
+
+      <div class="info-item">
+        <div class="icon-wrapper"><i class="fas fa-envelope"></i></div>
+        <div class="info-content">
+          <h3>{{ currentLanguage === 'العربية' ? 'البريد الإلكتروني' : 'Email' }}</h3>
+          <a href="mailto:info@alamir.com">info@alamir.com</a>
+        </div>
+      </div>
+
+      <div class="info-item">
+        <div class="icon-wrapper"><i class="fas fa-map-marker-alt"></i></div>
+        <div class="info-content">
+          <h3>{{ currentLanguage === 'العربية' ? 'العنوان' : 'Address' }}</h3>
+          <p>{{ currentLanguage === 'العربية' ? 'القاهرة، مصر' : 'Cairo, Egypt' }}</p>
+        </div>
+      </div>
+
+      <div class="info-item">
+        <div class="icon-wrapper whatsapp"><i class="fab fa-whatsapp"></i></div>
+        <div class="info-content">
+          <h3>{{ currentLanguage === 'العربية' ? 'واتساب' : 'WhatsApp' }}</h3>
+          <a href="https://wa.me/201016117779" target="_blank" dir="ltr">+20 101 611 7779</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

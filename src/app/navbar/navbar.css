@@ -773,74 +773,77 @@
 
 
 
-/* ==================== Responsive Navbar (Mobile Menu) ==================== */
+/* ==================== ✅ Responsive Navbar Menu ==================== */
 
+/* زر القائمة (الهاتف) */
 .menu-toggle {
+  display: none;
+  font-size: 26px;
+  color: #1f2937;
+  cursor: pointer;
   background: none;
   border: none;
-  color: #1f2937;
-  font-size: 28px;
-  cursor: pointer;
-  display: none;
-  transition: transform 0.3s ease, color 0.3s ease;
+  outline: none;
+  transition: transform 0.3s ease;
 }
 
 .menu-toggle:hover {
-  color: #f1b600;
   transform: scale(1.1);
 }
 
+/* تعديل مكان الزر */
 @media (max-width: 768px) {
-  .container {
-    position: relative;
-  }
-
   .menu-toggle {
     display: block;
     order: 4;
   }
 
+  /* إخفاء الروابط افتراضياً في الهاتف */
   .nav-links {
     position: absolute;
     top: 60px;
     right: 0;
-    background: rgb(240, 241, 242);
+    background-color: rgb(155, 157, 158);
     flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    padding: 20px 0;
-    border-radius: 0 0 10px 10px;
     width: 100%;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-    transform: translateY(-150%);
+    text-align: center;
+    gap: 20px;
+    padding: 20px 0;
+    border-radius: 0 0 15px 15px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    z-index: 999;
+
+    /* افتراضيًا مخفية */
+    transform: translateY(-100%);
     opacity: 0;
     pointer-events: none;
-    transition: all 0.3s ease;
-    z-index: 999;
+    transition: all 0.4s ease;
   }
 
+  /* لما تفتح */
   .nav-links.active {
     transform: translateY(0);
     opacity: 1;
     pointer-events: auto;
   }
 
-  .nav-links li {
-    width: 100%;
-    text-align: center;
+  /* نخفي الجزء اليمين لتوفير مساحة */
+  .right-side {
+    display: none;
   }
 
+  /* الروابط */
   .nav-links a {
-    color: #1f2937;
+    font-size: 16px;
     font-weight: 600;
-    display: block;
+    color: #000;
     padding: 10px 0;
-    width: 100%;
+    display: block;
+    transition: 0.3s;
   }
 
   .nav-links a:hover {
-    background: #f1b600;
-    color: #000;
-    border-radius: 6px;
+    color: #f1b600;
+    background-color: rgba(255, 255, 255, 0.2);
   }
 }
