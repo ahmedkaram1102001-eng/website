@@ -24,13 +24,13 @@
     </div>
 
     <!-- روابط -->
-     <ul class="nav-links">
-       <li><a [routerLink]="['/Products']">{{ currentLanguage === 'العربية' ? 'الوظائف' : 'Jobs' }}</a></li>
-     <li *ngIf="isAdmin"><a [routerLink]="['/admin-dashboard']">{{ currentLanguage === 'العربية' ? 'لوحة التحكم' : 'Dashboard' }}</a></li>
-  <li><a (click)="goToCompanies()">{{ currentLanguage === 'العربية' ? 'الشركات' : 'Companies' }}</a></li>
-  <li><a [routerLink]="['/About']">{{ currentLanguage === 'العربية' ? 'من نحن' : 'About Us' }}</a></li>
-  <li><a [routerLink]="['/Home']">{{ currentLanguage === 'العربية' ? 'الصفحة الرئيسية' : 'Home' }}</a></li>
-</ul>
+    <ul class="nav-links">
+      <li><a [routerLink]="['/Home']">{{ currentLanguage === 'العربية' ? 'الصفحة الرئيسية' : 'Home' }}</a></li>
+      <li><a [routerLink]="['/About']">{{ currentLanguage === 'العربية' ? 'من نحن' : 'About Us' }}</a></li>
+      <li><a [routerLink]="['/Products']">{{ currentLanguage === 'العربية' ? 'الوظائف' : 'Jobs' }}</a></li>
+      <li *ngIf="isAdmin"><a [routerLink]="['/admin-dashboard']">{{ currentLanguage === 'العربية' ? 'لوحة التحكم' : 'Dashboard' }}</a></li>
+    </ul>
+
 
 
     <!-- اللوجو -->
