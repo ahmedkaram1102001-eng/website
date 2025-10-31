@@ -1,0 +1,401 @@
+<div class="dashboard-container" dir="rtl">
+  
+  <!-- 🎨 Header الجذاب -->
+  <header class="dashboard-header">
+    <div class="header-content">
+      <div class="header-text">
+        <h1>🎯 لوحة التحكم</h1>
+        <p>مرحباً بك في نظام إدارة التوظيف - Alamir Group</p>
+      </div>
+      <div class="header-actions">
+        <button class="header-btn">
+          <i class="fas fa-bell"></i>
+          <span class="badge">{{ stats.pending }}</span>
+        </button>
+        <button class="header-btn">
+          <i class="fas fa-user-circle"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="dashboard-content">
+    
+    <!-- 📊 Progress Bar الاحترافي -->
+    <div class="progress-section">
+      <h2 class="section-title">
+        <i class="fas fa-chart-line"></i>
+        إحصائيات الطلبات
+      </h2>
+      
+      <div class="progress-container">
+        <!-- Total Applications -->
+        <div class="progress-item">
+          <div class="progress-header">
+            <span class="progress-label">
+              <i class="fas fa-users"></i>
+              إجمالي الطلبات
+            </span>
+            <span class="progress-value">{{ stats.total }}</span>
+          </div>
+          <div class="progress-bar-wrapper">
+            <div class="progress-bar-bg">
+              <div class="progress-bar total" [style.width]="'100%'">
+                <span class="progress-percentage">100%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pending Applications -->
+        <div class="progress-item">
+          <div class="progress-header">
+            <span class="progress-label">
+              <i class="fas fa-clock"></i>
+              قيد المراجعة
+            </span>
+            <span class="progress-value">{{ stats.pending }}</span>
+          </div>
+          <div class="progress-bar-wrapper">
+            <div class="progress-bar-bg">
+              <div class="progress-bar pending" 
+                   [style.width]="stats.total > 0 ? (stats.pending / stats.total * 100) + '%' : '0%'">
+                <span class="progress-percentage">
+                  {{ stats.total > 0 ? (stats.pending / stats.total * 100).toFixed(0) : 0 }}%
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Approved Applications -->
+        <div class="progress-item">
+          <div class="progress-header">
+            <span class="progress-label">
+              <i class="fas fa-check-circle"></i>
+              المقبولين
+            </span>
+            <span class="progress-value">{{ stats.approved }}</span>
+          </div>
+          <div class="progress-bar-wrapper">
+            <div class="progress-bar-bg">
+              <div class="progress-bar approved" 
+                   [style.width]="stats.total > 0 ? (stats.approved / stats.total * 100) + '%' : '0%'">
+                <span class="progress-percentage">
+                  {{ stats.total > 0 ? (stats.approved / stats.total * 100).toFixed(0) : 0 }}%
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Rejected Applications -->
+        <div class="progress-item">
+          <div class="progress-header">
+            <span class="progress-label">
+              <i class="fas fa-times-circle"></i>
+              المرفوضين
+            </span>
+            <span class="progress-value">{{ stats.rejected }}</span>
+          </div>
+          <div class="progress-bar-wrapper">
+            <div class="progress-bar-bg">
+              <div class="progress-bar rejected" 
+                   [style.width]="stats.total > 0 ? (stats.rejected / stats.total * 100) + '%' : '0%'">
+                <span class="progress-percentage">
+                  {{ stats.total > 0 ? (stats.rejected / stats.total * 100).toFixed(0) : 0 }}%
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 🎯 أزرار الإجراءات -->
+    <div class="action-buttons">
+      <button class="action-btn job-btn" (click)="showJobModal = true">
+        <i class="fas fa-briefcase"></i>
+        <span>إضافة وظيفة جديدة</span>
+      </button>
+      <button class="action-btn congrat-btn" (click)="showCongratModal = true">
+        <i class="fas fa-trophy"></i>
+        <span>إضافة تهنئة</span>
+      </button>
+    </div>
+
+    <!-- 📋 قائمة الطلبات -->
+    <div class="applications-section">
+      <h2 class="section-title">
+        <i class="fas fa-file-alt"></i>
+        طلبات التوظيف
+        <span class="count-badge">{{ applications.length }}</span>
+      </h2>
+
+      <div class="applications-grid">
+        <div class="application-card" *ngFor="let app of applications">
+          <div class="card-header">
+            <div class="applicant-info">
+              <div class="avatar">
+                {{ app.firstName.charAt(0) }}{{ app.lastName.charAt(0) }}
+              </div>
+              <div>
+                <h3>{{ app.firstName }} {{ app.lastName }}</h3>
+                <p class="position">{{ app.position }}</p>
+              </div>
+            </div>
+            <span class="status-badge" [ngClass]="getStatusColor(app.status)">
+              {{ getStatusText(app.status) }}
+            </span>
+          </div>
+
+          <div class="card-body">
+            <div class="info-row">
+              <i class="fas fa-envelope"></i>
+              <span>{{ app.email }}</span>
+            </div>
+            <div class="info-row">
+              <i class="fas fa-phone"></i>
+              <span>{{ app.phone }}</span>
+            </div>
+            <div class="info-row">
+              <i class="fas fa-calendar"></i>
+              <span>{{ formatDate(app.date) }}</span>
+            </div>
+            <div class="info-row">
+              <i class="fas fa-paperclip"></i>
+              <span>{{ app.cv }}</span>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <button class="details-btn" (click)="viewApplicationDetails(app)">
+              <i class="fas fa-eye"></i>
+              عرض التفاصيل
+            </button>
+            
+            <div class="action-btns" *ngIf="app.status === 'pending'">
+              <button class="approve-btn" (click)="handleStatusChange(app.id, 'approved')">
+                <i class="fas fa-check"></i>
+                قبول
+              </button>
+              <button class="reject-btn" (click)="handleStatusChange(app.id, 'rejected')">
+                <i class="fas fa-times"></i>
+                رفض
+              </button>
+            </div>
+
+            <button class="delete-btn" (click)="deleteApplication(app.id)">
+              <i class="fas fa-trash"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="empty-state" *ngIf="applications.length === 0">
+        <i class="fas fa-inbox"></i>
+        <h3>لا توجد طلبات حالياً</h3>
+        <p>سيتم عرض طلبات التوظيف هنا</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🪟 Modal إضافة وظيفة -->
+  <div class="modal-overlay" *ngIf="showJobModal" (click)="closeJobModal()">
+    <div class="modal-container" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h2><i class="fas fa-briefcase"></i> إضافة وظيفة جديدة</h2>
+        <button class="close-btn" (click)="closeJobModal()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="form-group">
+          <label><i class="fas fa-heading"></i> عنوان الوظيفة</label>
+          <input 
+            type="text" 
+            [(ngModel)]="jobForm.title"
+            placeholder="مثال: مهندس برمجيات"
+            class="form-input"
+          />
+        </div>
+
+        <div class="form-group">
+          <label><i class="fas fa-align-left"></i> وصف الوظيفة</label>
+          <textarea 
+            [(ngModel)]="jobForm.description"
+            placeholder="اكتب وصفاً تفصيلياً للوظيفة..."
+            rows="5"
+            class="form-input"
+          ></textarea>
+        </div>
+
+        <div class="form-group">
+          <label><i class="fas fa-image"></i> صورة الوظيفة (اختياري)</label>
+          <div class="upload-area" [class.has-preview]="jobImagePreview">
+            <input 
+              type="file" 
+              id="jobImage"
+              (change)="onJobImageSelected($event)"
+              accept="image/*"
+              hidden
+            />
+            <label for="jobImage" class="upload-label">
+              <div *ngIf="!jobImagePreview" class="upload-placeholder">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <p>اضغط لرفع صورة</p>
+                <span>PNG, JPG حتى 10MB</span>
+              </div>
+              <div *ngIf="jobImagePreview" class="image-preview">
+                <img [src]="jobImagePreview" alt="Preview" />
+                <div class="preview-overlay">
+                  <i class="fas fa-sync-alt"></i>
+                  <span>تغيير الصورة</span>
+                </div>
+              </div>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="cancel-btn" (click)="closeJobModal()">
+          <i class="fas fa-times"></i> إلغاء
+        </button>
+        <button class="submit-btn" (click)="handleAddJob()">
+          <i class="fas fa-check"></i> إضافة الوظيفة
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🪟 Modal إضافة تهنئة -->
+  <div class="modal-overlay" *ngIf="showCongratModal" (click)="closeCongratModal()">
+    <div class="modal-container" (click)="$event.stopPropagation()">
+      <div class="modal-header congrat-header">
+        <h2><i class="fas fa-trophy"></i> إضافة تهنئة جديدة</h2>
+        <button class="close-btn" (click)="closeCongratModal()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="form-group">
+          <label><i class="fas fa-heading"></i> عنوان التهنئة</label>
+          <input 
+            type="text" 
+            [(ngModel)]="congratForm.title"
+            placeholder="مثال: تهنئة بالعيد"
+            class="form-input"
+          />
+        </div>
+
+        <div class="form-group">
+          <label><i class="fas fa-align-left"></i> نص التهنئة</label>
+          <textarea 
+            [(ngModel)]="congratForm.message"
+            placeholder="اكتب نص التهنئة..."
+            rows="5"
+            class="form-input"
+          ></textarea>
+        </div>
+
+        <div class="form-group">
+          <label><i class="fas fa-image"></i> صورة التهنئة (اختياري)</label>
+          <div class="upload-area" [class.has-preview]="congratImagePreview">
+            <input 
+              type="file" 
+              id="congratImage"
+              (change)="onCongratImageSelected($event)"
+              accept="image/*"
+              hidden
+            />
+            <label for="congratImage" class="upload-label">
+              <div *ngIf="!congratImagePreview" class="upload-placeholder">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <p>اضغط لرفع صورة</p>
+                <span>PNG, JPG حتى 10MB</span>
+              </div>
+              <div *ngIf="congratImagePreview" class="image-preview">
+                <img [src]="congratImagePreview" alt="Preview" />
+                <div class="preview-overlay">
+                  <i class="fas fa-sync-alt"></i>
+                  <span>تغيير الصورة</span>
+                </div>
+              </div>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="cancel-btn" (click)="closeCongratModal()">
+          <i class="fas fa-times"></i> إلغاء
+        </button>
+        <button class="submit-btn congrat-submit" (click)="handleAddCongratulation()">
+          <i class="fas fa-check"></i> إضافة التهنئة
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🪟 Modal تفاصيل الطلب -->
+  <div class="modal-overlay" *ngIf="showApplicationDetails && selectedApplication" (click)="closeApplicationDetails()">
+    <div class="modal-container large" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h2><i class="fas fa-user"></i> تفاصيل المتقدم</h2>
+        <button class="close-btn" (click)="closeApplicationDetails()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <div class="modal-body" *ngIf="selectedApplication">
+        <div class="details-grid">
+          <div class="detail-item">
+            <label>الاسم الكامل</label>
+            <p>{{ selectedApplication.firstName }} {{ selectedApplication.lastName }}</p>
+          </div>
+          <div class="detail-item">
+            <label>الوظيفة المتقدم لها</label>
+            <p>{{ selectedApplication.position }}</p>
+          </div>
+          <div class="detail-item">
+            <label>البريد الإلكتروني</label>
+            <p>{{ selectedApplication.email }}</p>
+          </div>
+          <div class="detail-item">
+            <label>رقم الهاتف</label>
+            <p>{{ selectedApplication.phone }}</p>
+          </div>
+          <div class="detail-item">
+            <label>تاريخ التقديم</label>
+            <p>{{ formatDate(selectedApplication.date) }}</p>
+          </div>
+          <div class="detail-item">
+            <label>الحالة</label>
+            <p>
+              <span class="status-badge" [ngClass]="getStatusColor(selectedApplication.status)">
+                {{ getStatusText(selectedApplication.status) }}
+              </span>
+            </p>
+          </div>
+          <div class="detail-item full-width">
+            <label>السيرة الذاتية</label>
+            <p class="cv-link">
+              <i class="fas fa-file-pdf"></i>
+              {{ selectedApplication.cv }}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="cancel-btn" (click)="closeApplicationDetails()">
+          <i class="fas fa-times"></i> إغلاق
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div>

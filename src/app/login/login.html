@@ -1,0 +1,65 @@
+<div class="login-container">
+  <div class="login-wrapper">
+    <div class="header">
+      <div class="logo">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+          viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+          <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+        </svg>
+      </div>
+      <h1>شركة الأمير</h1>
+      <p class="subtitle">لوحة التحكم الإدارية</p>
+    </div>
+
+    <div class="login-card">
+      <h2>تسجيل الدخول</h2>
+
+      <div *ngIf="errorMessage" class="error-message">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+          viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="8" x2="12" y2="12"></line>
+          <line x1="12" y1="16" x2="12.01" y2="16"></line>
+        </svg>
+        <span>{{ errorMessage }}</span>
+      </div>
+
+      <div class="form-group">
+        <label for="username">اسم المستخدم</label>
+        <div class="input-wrapper">
+          <input type="text" id="username" [(ngModel)]="username"
+            (keypress)="onKeyPress($event)" [disabled]="isLoading"
+            placeholder="أدخل اسم المستخدم" class="form-input" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">كلمة المرور</label>
+        <div class="input-wrapper">
+          <input type="password" id="password" [(ngModel)]="password"
+            (keypress)="onKeyPress($event)" [disabled]="isLoading"
+            placeholder="أدخل كلمة المرور" class="form-input" />
+        </div>
+      </div>
+
+      <button (click)="onLogin()" [disabled]="isLoading" class="btn-login">
+        <span *ngIf="!isLoading">تسجيل الدخول</span>
+        <span *ngIf="isLoading" class="loading-content">
+          <span class="spinner"></span>
+          جاري تسجيل الدخول...
+        </span>
+      </button>
+
+      <p class="info-text">
+        للحصول على صلاحيات الدخول، يرجى التواصل مع المسؤول
+      </p>
+    </div>
+
+    <div class="footer">
+      <p>© 2025 شركة الأمير - جميع الحقوق محفوظة</p>
+    </div>
+  </div>
+</div>

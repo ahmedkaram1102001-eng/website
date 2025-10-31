@@ -1,0 +1,12 @@
+<!-- لو الصفحة مش Login، اعرض الناف بار -->
+<div *ngIf="!isLoginPage">
+  <app-navbar></app-navbar>
+</div>
+
+<!-- هنا بتتعرض باقي الصفحات -->
+<router-outlet></router-outlet>
+
+<!-- لو الصفحة مش Login، اعرض الفوتر -->
+<div *ngIf="!isLoginPage">
+  <app-footer></app-footer>
+</div>

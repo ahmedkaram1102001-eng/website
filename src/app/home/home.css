@@ -1,0 +1,529 @@
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* ارتفاع الشاشة بالكامل */
+  overflow: hidden;
+}
+
+.background-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 85%;
+  object-fit: cover; /* يملأ الخلفية بدون تشويه */
+  z-index: -1;
+}
+
+.hero-content {
+  position: relative;
+  color: white;
+  text-align: center;
+  top: 30%;
+  transform: translateY(-50%);
+  margin-left: 900px;
+}
+
+.hero-content h1 {
+  font-size: 70px;
+  font-weight: bold;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+  margin-bottom: 20px;
+  
+}
+
+.hero-content h2 {
+  font-size: 35px;
+  font-weight: 400;
+  margin-bottom: 40px;
+  text-shadow: 1px 1px 8px rgba(0, 0, 0, 0.6);
+}
+
+.learn-more a {
+  background-color: #f4b400;
+  color: black;
+  font-weight: bold;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+} 
+
+.learn-more a:hover {
+  background-color: #d89f00;
+  transform: scale(1.05);
+}
+.hero-content {
+  position: relative;
+  color: white;
+  text-align: center;
+  top: 40%;
+  transform: translateY(-50%);
+}
+
+.hero-content h1 {
+  font-size: 70px;
+  font-weight: bold;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+}
+
+.hero-content h2 {
+  font-size: 35px;
+  margin-top: 10px;
+  text-shadow: 1px 1px 8px rgba(0, 0, 0, 0.6);
+}
+
+.learn-more {
+  background-color: #f4b400;
+  color: black;
+  font-weight: bold;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 8px;
+  margin-top: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.learn-more:hover {
+  background-color: #d89f00;
+  transform: scale(1.05);
+}
+
+/* ====== قسم الشركات ====== */
+.companies-section {
+  text-align: center;
+  padding: 80px 20px;
+  background-color: #fff;
+}
+
+.companies-section h2 {
+  font-size: 40px;
+  color: #333;
+  margin-bottom: 20px;
+  
+}
+
+.companies-section .desc {
+  max-width: 800px;
+  margin: 0 auto 60px;
+  font-size: 18px;
+  color: #555;
+  line-height: 1.8;
+}
+
+.companies-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  justify-items: center;
+  justify-content: center; /* مهم علشان المنتصف */
+}
+
+.company-card {
+  background: #f9f9f9;
+  border-radius: 12px;
+  padding: 20px;
+  width: 280px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.company-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* نخلي الكرتين الأخيرين في المنتصف تمامًا */
+.company-card:nth-child(4) {
+  grid-column: 2; /* يبدأ من العمود الثاني */
+}
+.company-card:nth-child(5) {
+  grid-column: 3; /* يبدأ من العمود الثالث */
+}
+
+/* عشان يكونوا فعلاً تحت بعض متناسقين */
+@media (max-width: 900px) {
+  .companies-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}
+
+.company-card img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  margin-bottom: 15px;
+  border-radius: 50px;
+}
+
+.company-card h3 {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.company-card p {
+  color: #666;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* ====== زر الصعود للأعلى ====== */
+.scroll-top {
+  position: fixed;
+  bottom: 25px;
+  left: 25px;
+  background-color: #f4b400;
+  color: black;
+  font-size: 22px;
+  border: none;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  cursor: pointer;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  z-index: 999;
+}
+
+.scroll-top:hover {
+  background-color: #d89f00;
+  transform: scale(1.1);
+}
+
+.scroll-top.show {
+  display: flex;
+}
+.trading-stages-section {
+  padding: 80px 20px;
+  background-color: #f8f9fa;
+  position: relative;
+  direction: rtl;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* العنوان */
+.section-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.main-title {
+  font-size: 32px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.description {
+  background-color: #1e3a8a;
+  color: white;
+  padding: 15px 30px;
+  display: inline-block;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+/* الشبكة */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  margin-top: 40px;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* البطاقات */
+.card {
+  background-color: #fffbeb;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: right;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.highlight-card {
+  background-color: #fbbf24;
+}
+
+.icon-wrapper {
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  margin-right: auto;
+}
+
+.yellow-bg {
+  background-color: #fbbf24;
+}
+
+.black-bg {
+  background-color: #1f2937;
+}
+
+.icon-wrapper i {
+  font-size: 28px;
+  color: white;
+}
+
+.card h3 {
+  font-size: 22px;
+  font-weight: bold;
+  color: #1f2937;
+  margin-bottom: 15px;
+}
+
+.card p {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #4b5563;
+}
+
+/* زر التمرير للأعلى */
+.scroll-top-btn {
+  position: fixed;
+  bottom: 30px;
+  left: 30px;
+  width: 50px;
+  height: 50px;
+  background-color: #fbbf24;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.scroll-top-btn:hover {
+  background-color: #f59e0b;
+  transform: translateY(-3px);
+}
+
+.scroll-top-btn i {
+  font-size: 20px;
+  color: white;
+}
+
+/* استجابة للشاشات الصغيرة */
+@media (max-width: 768px) {
+  .trading-stages-section {
+    padding: 50px 15px;
+  }
+
+  .main-title {
+    font-size: 24px;
+  }
+
+  .description {
+    font-size: 14px;
+    padding: 12px 20px;
+  }
+
+  .cards-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .scroll-top-btn {
+    bottom: 20px;
+    left: 20px;
+    width: 45px;
+    height: 45px;
+  }
+}
+
+/* ========== TypeScript Component ========== */
+/* // trading-stages.component.ts
+import { Component, HostListener } from '@angular/core';
+
+@Component({
+  selector: 'app-trading-stages',
+  templateUrl: './trading-stages.component.html',
+  styleUrls: ['./trading-stages.component.css']
+})
+export class TradingStagesComponent {
+  showScrollButton = false;
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    this.showScrollButton = window.pageYOffset > 300;
+  }
+
+  scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+} */
+
+.role-toggle {
+  text-align: center;
+  margin: 20px 0;
+}
+.role-toggle button {
+  margin: 0 10px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  background-color: #1e3a8a;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.role-toggle button:hover {
+  background-color: #0f172a;
+}
+
+/* قسم التهاني */
+.congratulations-section {
+  padding: 40px 20px;
+  background: #f9fafb;
+  border-radius: 12px;
+  margin: 40px auto;
+  max-width: 900px;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 28px;
+  color: #1e3a8a;
+  margin-bottom: 20px;
+}
+
+.congrats-card {
+  background: white;
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  position: relative;
+}
+
+.congrats-title {
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #0f172a;
+}
+
+.message {
+  direction: rtl;
+  text-align: right;
+  color: #333;
+  line-height: 1.7;
+  margin-bottom: 15px;
+}
+
+.image-wrapper img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  display: block;
+  margin: 0 auto;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.date {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+/* القائمة المنسدلة */
+
+.menu-dots {
+  cursor: pointer;
+  font-size: 20px;
+  user-select: none;
+}
+.menu-options {
+  top: 20px;
+  right: 0;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.menu-options {
+  top: 0px;
+  right: 10px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+   cursor: pointer;
+}
+.menu-options button {
+  display: block;
+  width: 100%;
+  border: none;
+  background: none;
+  padding: 8px 15px;
+  cursor: pointer;
+  text-align: left;
+}
+.menu-options button:hover {
+  background: #f0f0f0;
+}
+
+
+
+
+/* قائمة الخيارات */
+/* .menu-options {
+  position: absolute;
+  top: 0px;
+  right: 10px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+   cursor: pointer;
+}
+.menu-options button {
+  display: block;
+  width: 100%;
+  border: none;
+  background: none;
+  padding: 8px 15px;
+  cursor: pointer;
+  text-align: left;
+}
+.menu-options button:hover {
+  background: #f0f0f0;
+} */
+

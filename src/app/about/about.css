@@ -1,0 +1,155 @@
+.about-section {
+  background-color: #fff;
+  padding: 60px 20px;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  max-width: 1000px;
+  margin: 10px auto;
+}
+.about-section h2 {
+  text-align: center;
+  font-size: 36px;
+  color: #111;
+}
+
+.section-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  color: #222;
+  position: relative;
+}
+
+.section-title::after {
+  content: "✓";
+  color: #c9a032; /* لون ذهبي خفيف */
+  margin-right: 8px;
+}
+
+.image-container {
+  overflow: hidden;
+  border-radius: 20px;
+  margin-bottom: 30px;
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  transition: transform 0.5s ease;
+}
+
+.image-container img:hover {
+  transform: scale(1.03);
+}
+
+.about-text {
+  font-size: 18px;
+  color: #444;
+  line-height: 1.8;
+  text-align: justify;
+  direction: rtl;
+}
+.about-section {
+  background-color: #fff;
+  padding: 80px 60px;
+  border-radius: 20px;
+  max-width: 1300px;
+  margin: 80px auto;
+  direction: rtl;
+}
+
+.about-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+  padding-top: -200px;
+}
+
+/* الصورة على اليسار */
+.about-image {
+  flex: 1;
+}
+
+.about-image img {
+  width: 100%;
+  height: 450px;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.5s ease;
+}
+
+.about-image img:hover {
+  transform: scale(1.03);
+}
+
+/* النص على اليمين */
+.about-content {
+  flex: 1;
+  text-align: right;
+}
+
+.title {
+  font-size: 30px;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 20px;
+  margin-top: -20px;
+}
+
+.title span {
+  color: #c9a032; /* لون ذهبي */
+  margin-right: 6px;
+}
+
+.about-content p {
+  font-size: 18px;
+  color: #444;
+  line-height: 1.9;
+  margin-bottom: 15px;
+  text-align: justify;
+}
+
+/* استجابة الشاشات الصغيرة */
+@media (max-width: 992px) {
+  .about-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .about-content {
+    text-align: justify;
+  }
+}
+
+
+
+.scroll-top {
+  position: fixed;
+  bottom: 25px;
+  left: 25px;
+  background-color: #f4b400;
+  color: black;
+  font-size: 22px;
+  border: none;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  cursor: pointer;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  z-index: 999;
+}
+
+.scroll-top:hover {
+  background-color: #d89f00;
+  transform: scale(1.1);
+}
+
+.scroll-top.show {
+  display: flex;
+}

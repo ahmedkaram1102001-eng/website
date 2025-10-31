@@ -1,0 +1,301 @@
+<li class="nav-item jobs-link">
+  <a href="#" class="nav-link">
+    الوظائف
+    <i class="fa-solid fa-briefcase"></i>
+  </a>
+</li>
+
+
+
+<section class="companies-section">
+  <h2>الوظائف</h2>
+  <p class="desc">بمفردك تُنجز الأمور، وبالعمل معًا نتفوق! هذه 
+    هي القناعة الجوهرية في مجموعة الأمير: الأشخاص خلف الكواليس هم 
+    المحرك الحقيقي لتقدمنا. فريقنا شغوف بروح التعاون، والابتكار
+    ، والأهم من ذلك، تقديم منتجات عالية الجودة لجميع عملائنا.
+  </p>
+  <div class="image-container">
+    <img src="assets/pexels-rdne-7841478.jpg" alt="مجموعة الأمير" />
+  </div>
+</section>
+<section class="jobs-section">
+  <h2 class="section-title">الوظائف المتاحة</h2>
+
+  <div *ngIf="jobs.length === 0" class="empty-message">
+    لا توجد وظائف حالياً 📭
+  </div>
+
+  <div class="job-card" *ngFor="let job of jobs">
+    <!-- العنوان في المنتصف أعلى الكارد -->
+    <div class="card-title">
+      <h3>{{ job.title }}</h3>
+    </div>
+
+    <!-- الوصف (برجراف) - يبدأ من اليمين -->
+    <div class="card-description">
+      <p>{{ job.description }}</p>
+    </div>
+
+    <!-- الصورة مع الثلاث نقاط فوقها -->
+    <div class="image-wrapper">
+      <img [src]="job.image || 'assets/placeholder.jpg'" alt="{{ job.title }}" />
+
+      <!-- الثلاث نقاط للأدمن فقط -->
+      <ng-container *ngIf="isAdmin">
+        <div class="menu-dots" (click)="job.showMenu = !job.showMenu" title="خيارات">
+          ⋮
+        </div>
+
+        <div class="menu-options" *ngIf="job.showMenu">
+          <button (click)="editJob(job)">✏️ تعديل</button>
+          <button (click)="deleteJob(job.id)">🗑️ حذف</button>
+        </div>
+      </ng-container>
+    </div>
+
+    <!-- تاريخ النشر أسفل الصورة على اليمين -->
+    <div class="card-date">
+      {{ formatDate(job.createdAt) }}
+    </div>
+  </div>
+</section>
+
+<section class="values-section">
+        <div class="values-container">
+            <!-- العنوان والوصف -->
+            <h2>قيمنا</h2>
+            <p class="description">
+                ميثاق الأخلاقيات الذي نعتمده يعبّر عن هويتنا، وطريقة رؤيتنا للأمور، وكيفية تعاملنا معها.
+            </p>
+
+            <!-- شبكة القيم -->
+            <div class="values-grid">
+                <!-- القيمة 1: النزاهة -->
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>النزاهة</h3>
+                </div>
+
+                <!-- القيمة 2: التحسين المستمر -->
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>التحسين المستمر</h3>
+                </div>
+
+                <!-- القيمة 3: تكافؤ الفرص -->
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <h3>تكافؤ الفرص</h3>
+                </div>
+
+                <!-- القيمة 4: السلامة -->
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>السلامة</h3>
+                </div>
+
+                <!-- القيمة 5: الجودة -->
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3>الجودة</h3>
+                </div>
+
+                <!-- القيمة 6: المسؤولية الاجتماعية -->
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>المسؤولية الاجتماعية</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="apply-section">
+  <div class="container">
+    <div class="content-wrapper">
+        <div class="text-content">
+        <h2>{{ currentLanguage === 'العربية' ? 'قدّم الآن' : 'Apply Now' }}</h2>
+        <p>
+          {{ currentLanguage === 'العربية' 
+            ? 'يمكنّك لنا حصرياً أن تنجح وتترقى طالما تبذل الجهد اللازم. توفر شركة الأمير فرصتاً متكافئة لجميع موظفيها بما يتوافق مع قانون العمل المصري.' 
+            : 'We enable you exclusively to succeed and advance as long as you put in the necessary effort. Al-Amir Company provides equal opportunities for all its employees in accordance with Egyptian labor law.' 
+          }}
+        </p>
+      </div>
+      <!-- الجانب الأيمن: النموذج -->
+      <div class="form-container">
+        <form [formGroup]="applicationForm" (ngSubmit)="onSubmit()">
+          <!-- الاسم الأول والأخير -->
+          <div class="form-row">
+            <div class="form-group">
+              <label>{{ currentLanguage === 'العربية' ? 'الاسم الأول' : 'First Name' }}</label>
+              <input 
+                type="text" 
+                formControlName="firstName"
+                [placeholder]="currentLanguage === 'العربية' ? 'احمد' : 'Ahmed'"
+                [class.error]="isFieldInvalid('firstName')">
+              <span class="error-message" *ngIf="isFieldInvalid('firstName')">
+                {{ currentLanguage === 'العربية' ? 'الاسم الأول مطلوب' : 'First name is required' }}
+              </span>
+            </div>
+
+            <div class="form-group">
+              <label>{{ currentLanguage === 'العربية' ? 'الاسم الأخير' : 'Last Name' }}</label>
+              <input 
+                type="text" 
+                formControlName="lastName"
+                [placeholder]="currentLanguage === 'العربية' ? 'محمود' : 'Mahmoud'"
+                [class.error]="isFieldInvalid('lastName')">
+              <span class="error-message" *ngIf="isFieldInvalid('lastName')">
+                {{ currentLanguage === 'العربية' ? 'الاسم الأخير مطلوب' : 'Last name is required' }}
+              </span>
+            </div>
+          </div>
+
+          <!-- رقم الهاتف والموقع -->
+          <div class="form-row">
+            <div class="form-group">
+              <label>{{ currentLanguage === 'العربية' ? 'رقم الهاتف' : 'Phone Number' }}</label>
+              <input 
+                type="tel" 
+                formControlName="phone"
+                placeholder="+201221141659"
+                [class.error]="isFieldInvalid('phone')">
+              <span class="error-message" *ngIf="isFieldInvalid('phone')">
+                {{ currentLanguage === 'العربية' ? 'رقم الهاتف غير صحيح' : 'Invalid phone number' }}
+              </span>
+            </div>
+
+            <div class="form-group">
+              <label>{{ currentLanguage === 'العربية' ? 'الموقع' : 'Location' }}</label>
+              <input 
+                type="text" 
+                formControlName="location"
+                [placeholder]="currentLanguage === 'العربية' ? 'الموقع' : 'Location'"
+                [class.error]="isFieldInvalid('location')">
+              <span class="error-message" *ngIf="isFieldInvalid('location')">
+                {{ currentLanguage === 'العربية' ? 'الموقع مطلوب' : 'Location is required' }}
+              </span>
+            </div>
+          </div>
+
+          <!-- البريد الإلكتروني -->
+          <div class="form-group full-width">
+            <label>{{ currentLanguage === 'العربية' ? 'البريد الإلكتروني' : 'Email' }}</label>
+            <input 
+              type="email" 
+              formControlName="email"
+              placeholder="you@company.com"
+              [class.error]="isFieldInvalid('email')">
+            <span class="error-message" *ngIf="isFieldInvalid('email')">
+              {{ currentLanguage === 'العربية' ? 'البريد الإلكتروني غير صحيح' : 'Invalid email address' }}
+            </span>
+          </div>
+
+          <!-- رفع السيرة الذاتية -->
+          <div class="form-group full-width">
+            <label>
+              {{ currentLanguage === 'العربية' 
+                ? 'رفع السيرة الذاتية (SVG، PNG، JPG، PDF، — أو اسحب الملف هنا)' 
+                : 'Upload CV (SVG, PNG, JPG, PDF — or drag and drop here)' 
+              }}
+            </label>
+            <div 
+              class="upload-area"
+              [class.dragover]="isDragging"
+              (dragover)="onDragOver($event)"
+              (dragleave)="onDragLeave($event)"
+              (drop)="onDrop($event)"
+              (click)="fileInput.click()">
+              
+              <div class="upload-icon">
+                <i class="fas fa-cloud-upload-alt"></i>
+              </div>
+              
+              <p *ngIf="!uploadedFile">
+                <strong>Click to upload</strong> or drag and drop<br>
+                <span>SVG, PNG, JPG or PDF, Dox, GIF</span><br>
+                <span class="size-limit">
+                  {{ currentLanguage === 'العربية' 
+                    ? '(الحد الأقصى 400×800 بكسل)' 
+                    : '(Max 400×800 pixels)' 
+                  }}
+                </span>
+              </p>
+
+              <div *ngIf="uploadedFile" class="uploaded-file">
+                <i class="fas fa-file-alt"></i>
+                <span>{{ uploadedFile.name }}</span>
+                <button type="button" class="remove-file" (click)="removeFile($event)">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+
+              <input 
+                #fileInput
+                type="file" 
+                (change)="onFileSelected($event)"
+                accept=".svg,.png,.jpg,.jpeg,.pdf,.doc,.docx,.gif"
+                style="display: none;">
+            </div>
+            <span class="error-message" *ngIf="isFieldInvalid('cv')">
+              {{ currentLanguage === 'العربية' ? 'السيرة الذاتية مطلوبة' : 'CV is required' }}
+            </span>
+          </div>
+
+          <!-- زر الإرسال -->
+          <button 
+            type="submit" 
+            class="submit-btn"
+            [disabled]="isSubmitting">
+            <span *ngIf="!isSubmitting">
+              {{ currentLanguage === 'العربية' ? 'قدّم الآن' : 'Submit Now' }}
+            </span>
+            <span *ngIf="isSubmitting">
+              <i class="fas fa-spinner fa-spin"></i>
+              {{ currentLanguage === 'العربية' ? 'جاري الإرسال...' : 'Submitting...' }}
+            </span>
+          </button>
+
+          <!-- رسالة النجاح -->
+          <div class="success-message" *ngIf="showSuccess">
+            <i class="fas fa-check-circle"></i>
+            {{ currentLanguage === 'العربية' 
+              ? 'تم إرسال طلبك بنجاح!' 
+              : 'Your application has been submitted successfully!' 
+            }}
+          </div>
+
+          <!-- رسالة الخطأ -->
+          <div class="error-message-box" *ngIf="showError">
+            <i class="fas fa-exclamation-circle"></i>
+            {{ errorMessage }}
+          </div>
+        </form>
+      </div>
+
+      <!-- الجانب الأيسر: النص -->
+    </div>
+  </div>
+</section>
+    
+
+    <!-- زر الصعود للأعلى -->
+    <button 
+  class="scroll-top" 
+  (click)="scrollToTop()" 
+  [class.show]="showButton"
+  aria-label="العودة للأعلى">
+  <i class="fas fa-arrow-up"></i>
+</button>
