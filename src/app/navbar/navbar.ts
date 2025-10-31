@@ -11,6 +11,14 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./navbar.css']
 })
 export class Navbar implements OnInit {
+goHome() {
+throw new Error('Method not implemented.');
+}
+menuOpen = false;
+
+toggleMenu() {
+  this.menuOpen = !this.menuOpen;
+}
   currentLanguage = 'العربية';
   dropdownOpen = false;
   showContactModal = false;
