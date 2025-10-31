@@ -23,7 +23,7 @@
       <!-- ❌ حذفنا زر إضافة وظيفة من هنا -->
     </div>
 
-    <!-- روابط -->>
+    <!-- روابط -->
      <ul class="nav-links">
        <li><a [routerLink]="['/Products']">{{ currentLanguage === 'العربية' ? 'الوظائف' : 'Jobs' }}</a></li>
      <li *ngIf="isAdmin"><a [routerLink]="['/admin-dashboard']">{{ currentLanguage === 'العربية' ? 'لوحة التحكم' : 'Dashboard' }}</a></li>
