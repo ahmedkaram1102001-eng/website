@@ -39,11 +39,15 @@ export const routes: Routes = [
   { path: 'About', component: About },
   { path: 'Products', component: Products },
   { path: 'admin-dashboard', component: AdminDashboardComponent },
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+
+  // البدء بالصفحة الرئيسية بدل صفحة اللوجن
+  { path: '', redirectTo: 'Home', pathMatch: 'full' },
+
+  // لأي لينك غلط يروح على الصفحة الرئيسية
+  { path: '**', redirectTo: 'Home' }
 ];
 
 @NgModule({
-  // ✅ استخدم HashLocationStrategy لتجنب 404 على GitHub Pages
   imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })

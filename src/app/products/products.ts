@@ -55,7 +55,8 @@ export class Products implements OnInit {
       phone: ['', [Validators.required, Validators.pattern(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/)]],
       location: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      cv: ['', Validators.required]
+      cv: ['', Validators.required],
+      jobTitle: ['', [Validators.required, Validators.minLength(2)]] 
     });
   }
 
@@ -130,6 +131,7 @@ export class Products implements OnInit {
       formData.append('phone', this.applicationForm.get('phone')?.value);
       formData.append('location', this.applicationForm.get('location')?.value);
       formData.append('email', this.applicationForm.get('email')?.value);
+      formData.append('jobTitle', this.applicationForm.get('jobTitle')?.value);
       formData.append('cv', this.uploadedFile);
       formData.append('language', this.currentLanguage);
       formData.append('submittedAt', new Date().toISOString());

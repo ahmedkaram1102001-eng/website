@@ -1,26 +1,31 @@
-.jobs-link {
-  margin-left: auto; /* تجعلها في أقصى اليمين */
+.employee-actions {
+  display: flex;          /* أهم حاجة Flex */
+  justify-content: flex-end;  /* هذا يجعل كل العناصر تروح يمين */
+  align-items: center;
+  gap: 20px;              /* مسافة بين العناصر لو في أكثر من عنصر */
+  list-style: none;
+  padding: 0;
 }
+
 .jobs-link .nav-link {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 22px;
-  font-weight: 500;
+  font-size: 20px;
+  font-weight: 600;
   color: #222;
   text-decoration: none;
-  transition: color 0.3s;
-  margin-left: 1100px;
-  padding-top: 40px;
+  padding: 10px 15px;
+  transition: 0.3s;
 }
+
 .jobs-link .nav-link i {
-  color: #000; /* لون ذهبي جميل للأيقونة */
   font-size: 20px;
 }
 
 .jobs-link .nav-link:hover {
   color: #c9a032;
-}
+} 
 .companies-section {
     margin-top: -20px;
   text-align: center;

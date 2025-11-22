@@ -1,6 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { CommonModule, ViewportScroller } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
+import { CommonModule, ViewportScroller } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -11,29 +11,13 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./navbar.css']
 })
 export class Navbar implements OnInit {
-reloadHome() {
-throw new Error('Method not implemented.');
-}
-goHome() {
-throw new Error('Method not implemented.');
-}
-menuOpen = false;
-
-toggleMenu() {
-  this.menuOpen = !this.menuOpen;
-  
-}
+  menuOpen = false;
   currentLanguage = 'العربية';
   dropdownOpen = false;
   showContactModal = false;
 
   isAdmin = false;
   currentUser: any = null;
-
-  // ❌ حذفنا متغيرات modal إضافة وظيفة
-  // showAddJobModal = false;
-  // selectedFile: File | null = null;
-  // newJob = { ... };
 
   constructor(private router: Router, private scroller: ViewportScroller) {}
 
@@ -45,14 +29,10 @@ toggleMenu() {
     }
   }
 
-  // ❌ حذفنا دوال modal إضافة وظيفة
-  // openAddJobModal() { ... }
-  // closeAddJobModal() { ... }
-  // onFileSelected(event: any) { ... }
-  // addJob() { ... }
-  // resetForm() { ... }
+  toggleMenu() {
+    this.menuOpen = !this.menuOpen;
+  }
 
-  // ✅ دوال الـ Dropdown
   toggleDropdown(event: Event) {
     event.stopPropagation();
     this.dropdownOpen = !this.dropdownOpen;
@@ -64,7 +44,6 @@ toggleMenu() {
     this.dropdownOpen = false;
   }
 
-  // ✅ دوال modal تواصل معنا (بقت كما هي)
   openContactModal() {
     this.showContactModal = true;
   }
@@ -73,7 +52,6 @@ toggleMenu() {
     this.showContactModal = false;
   }
 
-  // ✅ الذهاب لصفحة الشركات
   goToCompanies() {
     if (this.router.url === '/Home') {
       this.scroller.scrollToAnchor('companies');
@@ -84,7 +62,14 @@ toggleMenu() {
     }
   }
 
-  // ✅ إغلاق Dropdown عند الضغط خارجه
+  reloadHome() {
+    if (this.router.url === '/Home') {
+      window.location.reload();
+    } else {
+      this.router.navigate(['/Home']);
+    }
+  }
+
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: Event) {
     this.dropdownOpen = false;
