@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, HostListener, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -9,21 +10,24 @@ import { Component, HostListener, OnInit } from '@angular/core';
   styleUrls: ['./home.css']
 })
 export class Home implements OnInit {
+  constructor(private router: Router) {}
+
+  goToAbout() {
+    this.router.navigate(['/About']);
+  }
 
   showButton = false;
   congratulations: any[] = [];
-  isAdmin = false; // 🔐 الحالة الافتراضية
+  isAdmin = false; 
 item: any;
+currentLanguage: any;
 
   ngOnInit() {
-    // ✅ جلب بيانات المستخدم الحالي من localStorage
     const currentUser = localStorage.getItem('currentUser');
     if (currentUser) {
       const user = JSON.parse(currentUser);
       this.isAdmin = user.role === 'admin';
     }
-
-    // 📦 تحميل التهاني المخزنة إن وجدت
     const saved = localStorage.getItem('congratulations');
     if (saved) {
       this.congratulations = JSON.parse(saved);
@@ -38,8 +42,6 @@ item: any;
   scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
-
-  // ✏️ تعديل تهنئة
   editCongratulation(item: any) {
     const newTitle = prompt('📝 تعديل العنوان:', item.title);
     const newMessage = prompt('💬 تعديل النص:', item.message);
@@ -50,8 +52,6 @@ item: any;
       localStorage.setItem('congratulations', JSON.stringify(this.congratulations));
     }
   }
-
-  // 🗑️ حذف تهنئة
   deleteCongratulation(id: number) {
     if (confirm('هل تريد حذف هذه التهنئة؟')) {
       this.congratulations = this.congratulations.filter(c => c.id !== id);
@@ -59,13 +59,10 @@ item: any;
     }
   }
 
-  // 📅 تنسيق التاريخ
   formatDate(dateString: string): string {
     const date = new Date(dateString);
     return date.toLocaleDateString('ar-EG', { year: 'numeric', month: 'long', day: 'numeric' });
   }
-
-  // 🏢 بيانات الشركات
   companies = [
     { logo: 'assets/images.jpg.png', name: 'شركة الأمير للأغذية', description: 'رائدة في إنتاج وتوزيع المنتجات الغذائية عالية الجودة.' },
     { logo: 'assets/images.jpg.png', name: 'شركة الوجد', description: 'نقدم أفضل أنواع الأرز والحبوب بدقة وجودة مميزة.' },

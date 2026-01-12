@@ -1,19 +1,13 @@
 <nav class="navbar">
   <div class="container">
-
-    <!-- زر القائمة في الموبايل -->
     <button class="menu-toggle" (click)="toggleMenu()">
       <i class="fas fa-bars"></i>
     </button>
-
-    <!-- اللوجو -->
     <div class="logo">
       <a routerLink="/Home">
         <img src="assets/images.jpg.png" alt="Alamir Group" />
       </a>
     </div>
-
-    <!-- الروابط -->
     <ul class="nav-links" [class.active]="menuOpen">
       <li><a routerLink="/Products">{{ currentLanguage === 'العربية' ? 'الوظائف' : 'Jobs' }}</a></li>
       <li *ngIf="isAdmin"><a routerLink="/admin-dashboard">{{ currentLanguage === 'العربية' ? 'لوحة التحكم' : 'Dashboard' }}</a></li>
@@ -21,10 +15,7 @@
       <li><a routerLink="/About">{{ currentLanguage === 'العربية' ? 'من نحن' : 'About Us' }}</a></li>
       <li><a routerLink="/Home" (click)="reloadHome()">{{ currentLanguage === 'العربية' ? 'الصفحة الرئيسية' : 'Home' }}</a></li>
     </ul>
-
-    <!-- يمين: اللغة + تواصل + تسجيل الدخول -->
     <div class="right-side">
-      <!-- Dropdown اللغة -->
       <div class="lang-dropdown" (click)="toggleDropdown($event)">
         <button class="lang-btn">
           {{ currentLanguage }} <span class="arrow">▾</span>
@@ -34,21 +25,15 @@
           <li (click)="setLanguage('English', $event)">English</li>
         </ul>
       </div>
-
-      <!-- زر التواصل -->
       <button class="contact-btn" (click)="openContactModal()">
         {{ currentLanguage === 'العربية' ? 'تواصل معنا' : 'Contact Us' }}
       </button>
-
-      <!-- زر تسجيل الدخول -->
       <button class="login-btn" routerLink="/login">
         {{ currentLanguage === 'العربية' ? 'تسجيل الدخول' : 'Login' }}
       </button>
     </div>
   </div>
 </nav>
-
-<!-- نافذة تواصل معنا -->
 <div class="contact-modal" *ngIf="showContactModal" (click)="closeContactModal()">
   <div class="contact-container" (click)="$event.stopPropagation()">
     <button class="close-btn" (click)="closeContactModal()">

@@ -1,4 +1,3 @@
-// login.ts
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -37,8 +36,6 @@ export class Login {
 
     setTimeout(() => {
       this.isLoading = false;
-
-      // 🔥 هنا نعمل يوزرين تجريبيين
       if (this.username === 'admin' && this.password === '1234') {
         localStorage.setItem('currentUser', JSON.stringify({ username: 'admin', role: 'admin' }));
         this.router.navigate(['/Home']);

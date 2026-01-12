@@ -1,19 +1,15 @@
-<!-- ====================================== -->
-<!--        قسم الفيديو الرئيسي          -->
-<!-- ====================================== -->
 <div class="hero-section">
   <video autoplay muted loop playsinline class="background-video">
     <source src="assets/LSEG Real-Time – Optimized _Cloud-based market data.mp4" type="video/mp4" />
     متصفحك لا يدعم تشغيل الفيديو.
   </video>
 
-  <div class="hero-content">
-    <h1>مجموعة الأمير</h1>
-    <h2>..حيث تُصنع الجودة</h2>
-    <button class="learn-more"> <a href="/About">تعرّف على المزيد</a></button>
-  </div>
+    <div class="hero-content">
+      <h1>مجموعة الأمير</h1>
+      <h2>..حيث تُصنع الجودة</h2>
+     <button class="learn-more" (click)="goToAbout()">تعرّف على المزيد</button>
+    </div>
 </div>
-<!-- 🔹 قسم التهاني -->
 <section class="congratulations-section">
   <h2 class="section-title">تهانينا 🎉</h2>
 
@@ -22,7 +18,6 @@
   </div>
 
   <div class="congrats-card" *ngFor="let item of congratulations">
-    <!-- 🔹 العنوان -->
     <h3 class="congrats-title">{{ item.title }}</h3>
     <ng-container *ngIf="isAdmin">
         <div class="menu-container">
@@ -33,29 +28,16 @@
           </div>
         </div>
       </ng-container>
-
-    <!-- 🔹 النص -->
     <p class="message">{{ item.message }}</p>
-
-    <!-- 🔹 الصورة -->
     <div class="image-wrapper" *ngIf="item.image">
       <img [src]="item.image" alt="تهنئة" />
     </div>
-
-    <!-- 🔹 التاريخ + القائمة -->
     <div class="card-footer">
       <small class="date">{{ formatDate(item.createdAt) }}</small>
 
     </div>
   </div>
 </section>
-
-
-
-
-<!-- ====================================== -->
-<!--           قسم الشركات               -->
-<!-- ====================================== -->
 <section id="companies" class="companies-section">
   <h2>شركاتنا</h2>
   <p class="desc">
@@ -72,12 +54,7 @@
     </div>
   </div>
 </section>
-
-<!-- ====================================== -->
-<!--      قسم مراحل التداول الزراعي       -->
-<!-- ====================================== -->
 <section class="trading-stages-wrapper">
-  <!-- العنوان والوصف -->
   <div class="companies-section">
     <h2>مراحل التداول  لدى مجموعة شركات الأمير</h2>
     <p class="desc">
@@ -86,11 +63,8 @@
       مما جعل اسم "الأمير" علامة تُشير إلى القوة والالتزام والمصداقية.
     </p>
   </div>
-
-  <!-- البطاقات الأربعة -->
   <div class="container">
     <div class="cards-grid">
-      <!-- بطاقة 1: الاختبار -->
       <div class="card">
         <div class="icon-wrapper yellow-bg">
           <i class="fas fa-layer-group"></i>
@@ -102,8 +76,6 @@
           خصوصاً أن السلع التي نتعامل بها حساسة بطبيعتها.
         </p>
       </div>
-
-      <!-- بطاقة 2: شراكات الموزعين -->
       <div class="card">
         <div class="icon-wrapper yellow-bg">
           <i class="fas fa-chart-line"></i>
@@ -116,8 +88,6 @@
           حقيقية لضمان الجودة الدائمة.
         </p>
       </div>
-
-      <!-- بطاقة 3: شراكات العملاء -->
       <div class="card highlight-card">
         <div class="icon-wrapper black-bg">
           <i class="fas fa-bolt"></i>
@@ -129,8 +99,6 @@
           لهم منتجات متنوعة بأسعار حقيقية. مما يجعلهم لا يبحثون عن بديل.
         </p>
       </div>
-
-      <!-- بطاقة 4: اللوجستيات -->
       <div class="card">
         <div class="icon-wrapper yellow-bg">
           <i class="fas fa-truck"></i>
@@ -145,10 +113,6 @@
     </div>
   </div>
 </section>
-
-<!-- ====================================== -->
-<!--        زر الصعود للأعلى            -->
-<!-- ====================================== -->
 <button 
   class="scroll-top" 
   (click)="scrollToTop()" 

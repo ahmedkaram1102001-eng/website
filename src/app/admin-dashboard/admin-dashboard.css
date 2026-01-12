@@ -1,4 +1,3 @@
-/* 🎨 الألوان الرئيسية */
 :root {
   --primary: #3b82f6;
   --primary-dark: #2563eb;
@@ -12,15 +11,11 @@
   --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
-
-/* 📦 Container رئيسي */
 .dashboard-container {
   min-height: 100vh;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   font-family: 'Cairo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-
-/* 🎯 Header */
 .dashboard-header {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   padding: 2rem;
@@ -29,7 +24,6 @@
   top: 0;
   z-index: 100;
 }
-
 .header-content {
   max-width: 1400px;
   margin: 0 auto;
@@ -37,7 +31,6 @@
   justify-content: space-between;
   align-items: center;
 }
-
 .header-text h1 {
   color: var(--white);
   font-size: 2.5rem;
@@ -45,18 +38,15 @@
   font-weight: 700;
   text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
 }
-
 .header-text p {
   color: rgba(255, 255, 255, 0.9);
   font-size: 1.1rem;
   margin: 0;
 }
-
 .header-actions {
   display: flex;
   gap: 1rem;
 }
-
 .header-btn {
   background: rgba(255, 255, 255, 0.2);
   border: none;
@@ -69,16 +59,13 @@
   position: relative;
   backdrop-filter: blur(10px);
 }
-
 .header-btn:hover {
   background: rgba(255, 255, 255, 0.3);
   transform: scale(1.1);
 }
-
 .header-btn i {
   font-size: 1.3rem;
 }
-
 .badge {
   position: absolute;
   top: -5px;
@@ -95,15 +82,11 @@
   font-weight: bold;
   border: 2px solid white;
 }
-
-/* 📊 المحتوى الرئيسي */
 .dashboard-content {
   max-width: 1400px;
   margin: 0 auto;
   padding: 2rem;
 }
-
-/* 📈 Progress Section */
 .progress-section {
   background: white;
   border-radius: 20px;
@@ -123,7 +106,6 @@
     transform: translateY(0);
   }
 }
-
 .section-title {
   font-size: 1.8rem;
   color: var(--dark);
@@ -133,11 +115,9 @@
   gap: 0.5rem;
   font-weight: 700;
 }
-
 .section-title i {
   color: var(--primary);
 }
-
 .count-badge {
   background: var(--primary);
   color: white;
@@ -146,8 +126,6 @@
   font-size: 0.9rem;
   margin-right: 0.5rem;
 }
-
-/* 🎯 Progress Bars الجذابة */
 .progress-container {
   display: grid;
   gap: 1.5rem;
@@ -256,8 +234,6 @@
   z-index: 1;
   text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
 }
-
-/* 🎯 أزرار الإجراءات */
 .action-buttons {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -297,8 +273,6 @@
 .congrat-btn {
   background: linear-gradient(135deg, #a855f7 0%, #9333ea 100%);
 }
-
-/* 📋 قسم الطلبات */
 .applications-section {
   background: white;
   border-radius: 20px;
@@ -313,8 +287,6 @@
   gap: 1.5rem;
   margin-top: 1.5rem;
 }
-
-/* 🎴 كارت الطلب */
 .application-card {
   background: white;
   border-radius: 15px;
@@ -502,8 +474,6 @@
   background: #fecaca;
   transform: scale(1.1);
 }
-
-/* 📭 حالة فارغة */
 .empty-state {
   text-align: center;
   padding: 4rem 2rem;
@@ -520,8 +490,6 @@
   font-size: 1.5rem;
   margin: 1rem 0 0.5rem 0;
 }
-
-/* 🪟 Modal */
 .modal-overlay {
   position: fixed;
   inset: 0;
@@ -644,8 +612,6 @@ textarea.form-input {
   resize: vertical;
   min-height: 120px;
 }
-
-/* 📤 Upload Area */
 .upload-area {
   border: 3px dashed #d1d5db;
   border-radius: 15px;
@@ -766,8 +732,6 @@ textarea.form-input {
   box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
   transform: translateY(-2px);
 }
-
-/* 📝 تفاصيل الطلب */
 .details-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -807,8 +771,6 @@ textarea.form-input {
   color: var(--primary) !important;
   cursor: pointer;
 }
-
-/* 📱 Responsive */
 @media (max-width: 768px) {
   .header-text h1 {
     font-size: 1.8rem;
